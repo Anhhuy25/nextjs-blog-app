@@ -4,7 +4,6 @@ import Notification from "../ui/notification";
 import { ERROR_CODE } from "@/constants/common";
 
 const showErrorMessageHandler = (code) => {
-  console.log(code === ERROR_CODE.invalid_input);
   switch (code) {
     case ERROR_CODE.invalid_input:
       return "Invalid input";
@@ -42,8 +41,6 @@ export default function ContactForm() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         if (data.ok) {
           setRequestStatus("success");
           emailInputRef.current.value = "";
