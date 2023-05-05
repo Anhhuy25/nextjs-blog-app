@@ -18,7 +18,7 @@ module.exports = (phase) => {
       db_username: process.env.DB_USERNAME,
       db_password: process.env.DB_PASSWORD,
       db_cluster: process.env.DB_CLUSTER,
-      db_database: "HUY'S_BLOG",
+      db_database: "HUY'S_BLOG_PROD",
     },
     reactStrictMode: true,
   };
