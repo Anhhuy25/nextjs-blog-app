@@ -4,7 +4,6 @@ import PostItem from "./post-item";
 
 export default function PostsGrid(props) {
   const { posts } = props;
-  console.log(posts);
 
   return (
     <ul className={classes.grid}>

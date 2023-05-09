@@ -1,10 +1,9 @@
 import AllPosts from "@/components/posts/all-posts";
+import { getAllPosts } from "@/helpers/api-utils";
 import Head from "next/head";
 import { Fragment } from "react";
 
 function AllPostsPage(props) {
-  console.log(props.posts);
-
   return (
     <Fragment>
       <Head>
@@ -20,8 +19,7 @@ function AllPostsPage(props) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const data = await res.json();
+  const data = await getAllPosts();
 
   if (!data || data.posts.length === 0) {
     return {

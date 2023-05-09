@@ -4,13 +4,7 @@ import Link from "next/link";
 import Image from "next/legacy/image";
 
 export default function PostItem(props) {
-  const { title, image, abstract, date, slug, _id } = props.post;
-
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+  const { title, image, abstract, slug, _id } = props.post;
 
   const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${_id}`;
@@ -29,7 +23,6 @@ export default function PostItem(props) {
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
-          <time>{formattedDate}</time>
           <p>{abstract}</p>
         </div>
       </Link>

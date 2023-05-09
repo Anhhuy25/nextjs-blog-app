@@ -1,8 +1,12 @@
 export async function getAllPosts() {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const data = await res.json();
+  try {
+    const res = await fetch(`${process.env.url}/api/posts`);
+    const data = await res.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getPost(id) {

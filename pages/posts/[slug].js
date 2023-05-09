@@ -34,6 +34,17 @@ export default function SlugPage(props) {
   );
 }
 
+export async function getStaticPaths() {
+  const data = await getAllPosts();
+
+  const ids = data.posts.map((post) => ({ params: { slug: post._id } }));
+
+  return {
+    paths: ids,
+    fallback: false,
+  };
+}
+
 export async function getStaticProps(context) {
   const id = context.params.slug;
   const post = await getPost(id);
@@ -46,17 +57,6 @@ export async function getStaticProps(context) {
 
   return {
     props: { post },
-  };
-}
-
-export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const data = await res.json();
-
-  const ids = data.posts.map((post) => ({ params: { slug: post._id } }));
-
-  return {
-    paths: ids,
-    fallback: false,
+    revalidate: 3600,
   };
 }
