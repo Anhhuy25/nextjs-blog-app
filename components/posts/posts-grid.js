@@ -4,11 +4,12 @@ import PostItem from "./post-item";
 
 export default function PostsGrid(props) {
   const { posts } = props;
+  console.log(posts);
 
   return (
     <ul className={classes.grid}>
       {posts.map((post) => (
-        <PostItem key={post.slug} post={post} />
+        <PostItem key={post._id} post={post} />
       ))}
     </ul>
   );

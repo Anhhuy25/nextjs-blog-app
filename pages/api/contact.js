@@ -1,7 +1,7 @@
-import { REGEX_EMAIL, dbName } from "@/constants/common";
+import { REGEX_EMAIL } from "@/constants/common";
 import { MongoClient } from "mongodb";
 
-const connectionString = `mongodb+srv://${process.env.db_username}:${process.env.db_password}@${process.env.db_cluster}.pv9k3cl.mongodb.net/?retryWrites=true&w=majority`;
+export const connectionString = `mongodb+srv://${process.env.db_username}:${process.env.db_password}@${process.env.db_cluster}.pv9k3cl.mongodb.net/?retryWrites=true&w=majority`;
 
 async function handler(req, res) {
   if (req.method === "POST") {
