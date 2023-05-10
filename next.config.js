@@ -9,5 +9,12 @@ module.exports = () => {
       ],
     },
     reactStrictMode: true,
+    exportPathMap: function () {
+      return {
+        "/contact": {
+          page: "/contact",
+        },
+      };
+    },
   };
 };
