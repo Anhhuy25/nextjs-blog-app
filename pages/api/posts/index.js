@@ -34,7 +34,7 @@ async function handler(req, res) {
         "https://techvccloud.mediacdn.vn/2018/11/23/js-15429579443112042672363-crop-1542957949936317424252.png",
     };
 
-    const db = client.db(process.env.db_database);
+    const db = client.db(process.env.DB_DATABASE);
 
     try {
       await db.collection("posts").insertOne(newPost);
@@ -54,7 +54,7 @@ async function handler(req, res) {
   }
 
   if (req.method === "GET") {
-    const db = client.db(process.env.db_database);
+    const db = client.db(process.env.DB_DATABASE);
 
     try {
       const result = await db.collection("posts").find({}).toArray();

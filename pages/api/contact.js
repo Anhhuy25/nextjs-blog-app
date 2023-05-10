@@ -1,7 +1,7 @@
 import { REGEX_EMAIL } from "@/constants/common";
 import { MongoClient } from "mongodb";
 
-export const connectionString = `mongodb+srv://${process.env.db_username}:${process.env.db_password}@${process.env.db_cluster}.pv9k3cl.mongodb.net/?retryWrites=true&w=majority`;
+export const connectionString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.pv9k3cl.mongodb.net/?retryWrites=true&w=majority`;
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -34,7 +34,7 @@ async function handler(req, res) {
       return;
     }
 
-    const db = client.db(process.env.db_database);
+    const db = client.db(process.env.DB_DATABASE);
 
     try {
       const result = await db.collection("messages").insertOne(newMessage);
