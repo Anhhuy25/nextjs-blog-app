@@ -30,6 +30,8 @@ async function handler(req, res) {
       title,
       abstract,
       description,
+      image:
+        "https://techvccloud.mediacdn.vn/2018/11/23/js-15429579443112042672363-crop-1542957949936317424252.png",
     };
 
     const db = client.db(process.env.db_database);

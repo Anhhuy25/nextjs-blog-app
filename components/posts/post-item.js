@@ -4,9 +4,8 @@ import Link from "next/link";
 import Image from "next/legacy/image";
 
 export default function PostItem(props) {
-  const { title, image, abstract, slug, _id } = props.post;
+  const { title, image, abstract, _id } = props.post;
 
-  const imagePath = `/images/posts/${slug}/${image}`;
   const linkPath = `/posts/${_id}`;
 
   return (
@@ -14,11 +13,12 @@ export default function PostItem(props) {
       <Link href={linkPath}>
         <div className={classes.image}>
           <Image
-            src={imagePath}
+            src={image}
             alt={title}
             width={300}
             height={200}
             layout="responsive"
+            priority
           />
         </div>
         <div className={classes.content}>

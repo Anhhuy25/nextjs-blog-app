@@ -1,5 +1,5 @@
 import AllPosts from "@/components/posts/all-posts";
-import { getAllPosts } from "@/helpers/api-utils";
+import { getAllPosts } from "@/lib/api-utils";
 import Head from "next/head";
 import { Fragment } from "react";
 
