@@ -39,7 +39,7 @@ module.exports = (phase) => {
       db_password: "Zf55Y78qKpBJz8gk",
       db_cluster: "cluster0",
       db_database: process.env.DB_DATABASE,
-      url: process.env.NEXT_PUBLIC_URL_PROD,
+      url: "https://huy-blog-app.vercel.app",
     },
     reactStrictMode: true,
   };
