@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./contact-form.module.css";
 import Notification from "../ui/notification";
 import { ERROR_CODE } from "@/constants/common";
+import axios from "axios";
 
 const showErrorMessageHandler = (code) => {
   switch (code) {
@@ -21,7 +22,7 @@ export default function ContactForm() {
   const [requestStatus, setRequestStatus] = useState(); // 'pending', 'success', 'error'
   const [requestError, setRequestError] = useState();
 
-  const sendMessageHandler = (e) => {
+  const sendMessageHandler = async (e) => {
     e.preventDefault();
     const message = {
       email: emailInputRef.current.value,
@@ -32,33 +33,48 @@ export default function ContactForm() {
     // Call api
     setRequestStatus("pending");
 
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(message),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.ok) {
-          setRequestStatus("success");
-          emailInputRef.current.value = "";
-          nameInputRef.current.value = "";
-          messageInputRef.current.value = "";
-        } else {
-          let message = showErrorMessageHandler(data.code);
+    const res = await axios.post("/api/contact", message);
 
-          setRequestError(message);
-          setRequestStatus("error");
-        }
-      })
-      .catch((err) => {
-        let message = showErrorMessageHandler(err.code);
+    if (res.data.ok) {
+      setRequestStatus("success");
 
-        setRequestError(message);
-        setRequestStatus("error");
-      });
+      emailInputRef.current.value = "";
+      nameInputRef.current.value = "";
+      messageInputRef.current.value = "";
+    } else {
+      let message = showErrorMessageHandler(res.data.code);
+
+      setRequestError(message);
+      setRequestStatus("error");
+    }
+
+    // fetch("/api/contact", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(message),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.ok) {
+    //       setRequestStatus("success");
+    //       emailInputRef.current.value = "";
+    //       nameInputRef.current.value = "";
+    //       messageInputRef.current.value = "";
+    //     } else {
+    //       let message = showErrorMessageHandler(data.code);
+
+    //       setRequestError(message);
+    //       setRequestStatus("error");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     let message = showErrorMessageHandler(err.code);
+
+    //     setRequestError(message);
+    //     setRequestStatus("error");
+    //   });
   };
 
   useEffect(() => {

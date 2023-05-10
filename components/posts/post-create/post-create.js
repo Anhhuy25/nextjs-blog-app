@@ -10,24 +10,28 @@ import {
 } from "@chakra-ui/react";
 import { Controller, useForm } from "react-hook-form";
 import classes from "./post-create.module.css";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function PostCreate() {
+  const router = useRouter();
+
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
-  const submitForm = (data) => {
-    fetch("/api/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+  const submitForm = async (data) => {
+    const res = await axios.post("/api/posts", {
+      title: data.title,
+      abstract: data.abstract,
+      description: data.description,
+    });
+
+    if (res.data.ok) {
+      router.push("/posts");
+    }
   };
 
   return (
