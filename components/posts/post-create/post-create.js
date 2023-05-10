@@ -23,15 +23,24 @@ export default function PostCreate() {
   } = useForm();
 
   const submitForm = async (data) => {
-    const res = await axios.post("/api/posts", {
-      title: data.title,
-      abstract: data.abstract,
-      description: data.description,
-    });
+    // const res = await axios.post("/api/posts", {
+    //   title: data.title,
+    //   abstract: data.abstract,
+    //   description: data.description,
+    // });
 
-    if (res.data.ok) {
-      router.push("/posts");
-    }
+    // if (res.data.ok) {
+    //   router.push("/posts");
+    // }
+
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(res);
   };
 
   return (

@@ -33,48 +33,48 @@ export default function ContactForm() {
     // Call api
     setRequestStatus("pending");
 
-    const res = await axios.post("/api/contact", message);
+    // const res = await axios.post("/api/contact", message);
 
-    if (res.data.ok) {
-      setRequestStatus("success");
+    // if (res.data.ok) {
+    //   setRequestStatus("success");
 
-      emailInputRef.current.value = "";
-      nameInputRef.current.value = "";
-      messageInputRef.current.value = "";
-    } else {
-      let message = showErrorMessageHandler(res.data.code);
+    //   emailInputRef.current.value = "";
+    //   nameInputRef.current.value = "";
+    //   messageInputRef.current.value = "";
+    // } else {
+    //   let message = showErrorMessageHandler(res.data.code);
 
-      setRequestError(message);
-      setRequestStatus("error");
-    }
+    //   setRequestError(message);
+    //   setRequestStatus("error");
+    // }
 
-    // fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(message),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.ok) {
-    //       setRequestStatus("success");
-    //       emailInputRef.current.value = "";
-    //       nameInputRef.current.value = "";
-    //       messageInputRef.current.value = "";
-    //     } else {
-    //       let message = showErrorMessageHandler(data.code);
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.ok) {
+          setRequestStatus("success");
+          emailInputRef.current.value = "";
+          nameInputRef.current.value = "";
+          messageInputRef.current.value = "";
+        } else {
+          let message = showErrorMessageHandler(data.code);
 
-    //       setRequestError(message);
-    //       setRequestStatus("error");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     let message = showErrorMessageHandler(err.code);
+          setRequestError(message);
+          setRequestStatus("error");
+        }
+      })
+      .catch((err) => {
+        let message = showErrorMessageHandler(err.code);
 
-    //     setRequestError(message);
-    //     setRequestStatus("error");
-    //   });
+        setRequestError(message);
+        setRequestStatus("error");
+      });
   };
 
   useEffect(() => {
