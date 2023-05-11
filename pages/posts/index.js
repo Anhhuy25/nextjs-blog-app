@@ -1,9 +1,10 @@
 import AllPosts from "@/components/posts/all-posts";
-import React, { Fragment } from "react";
-import { DUMMY_DATA } from "..";
+import { getAllPosts } from "@/lib/api-utils";
 import Head from "next/head";
+import { Fragment } from "react";
+import { DUMMY_POSTS } from "..";
 
-function AllPostsPage() {
+function AllPostsPage(props) {
   return (
     <Fragment>
       <Head>
@@ -13,9 +14,24 @@ function AllPostsPage() {
           content="A list of all programming-related tutorials and posts!"
         />
       </Head>
-      <AllPosts posts={DUMMY_DATA} />;
+      <AllPosts posts={DUMMY_POSTS} />;
     </Fragment>
   );
 }
+
+// export async function getStaticProps() {
+//   const data = await getAllPosts();
+
+//   if (!data || data.posts.length === 0) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+
+//   return {
+//     props: { posts: data.posts },
+//     revalidate: 3600,
+//   };
+// }
 
 export default AllPostsPage;

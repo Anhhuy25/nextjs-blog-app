@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./contact-form.module.css";
 import Notification from "../ui/notification";
 import { ERROR_CODE } from "@/constants/common";
+import axios from "axios";
 
 const showErrorMessageHandler = (code) => {
   switch (code) {
@@ -21,7 +22,7 @@ export default function ContactForm() {
   const [requestStatus, setRequestStatus] = useState(); // 'pending', 'success', 'error'
   const [requestError, setRequestError] = useState();
 
-  const sendMessageHandler = (e) => {
+  const sendMessageHandler = async (e) => {
     e.preventDefault();
     const message = {
       email: emailInputRef.current.value,
@@ -31,6 +32,21 @@ export default function ContactForm() {
 
     // Call api
     setRequestStatus("pending");
+
+    // const res = await axios.post("/api/contact", message);
+
+    // if (res.data.ok) {
+    //   setRequestStatus("success");
+
+    //   emailInputRef.current.value = "";
+    //   nameInputRef.current.value = "";
+    //   messageInputRef.current.value = "";
+    // } else {
+    //   let message = showErrorMessageHandler(res.data.code);
+
+    //   setRequestError(message);
+    //   setRequestStatus("error");
+    // }
 
     fetch("/api/contact", {
       method: "POST",
