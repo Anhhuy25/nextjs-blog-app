@@ -12,7 +12,9 @@ module.exports = (phase) => {
         ],
       },
       reactStrictMode: true,
-      NEXT_PUBLIC_URL: "http://127.0.0.1:3000",
+      env: {
+        NEXT_PUBLIC_URL: "http://127.0.0.1:3000",
+      },
     };
   }
 
@@ -26,6 +28,8 @@ module.exports = (phase) => {
       ],
     },
     reactStrictMode: true,
-    NEXT_PUBLIC_URL: "https://huy-blog-app.vercel.app",
+    env: {
+      NEXT_PUBLIC_URL: "https://huy-blog-app.vercel.app",
+    },
   };
 };
